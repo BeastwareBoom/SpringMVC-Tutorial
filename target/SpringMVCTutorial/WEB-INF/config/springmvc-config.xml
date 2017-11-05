@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd     
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="app05a.controller"/>
+    <context:component-scan base-package="app05a.service"/>
+    <!--<context:component-scan base-package="app05a.common"/>-->
+
+    <!--<mvc:annotation-driven/>-->
+    <!--为Converter或Formatter增加conversion-service="conversionService"-->
+    <!--<mvc:annotation-driven conversion-service="conversionService"/>-->
+    <!--<mvc:annotation-driven conversion-service="conversionService2"/>-->
+    <mvc:annotation-driven conversion-service="conversionService3"/>
+    <mvc:resources mapping="/css/**" location="/WEB-INF/static/css/"/>
+
+    <!--使用更具备一般性的Converter-->
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <!--自定义的Converter-->
+                <bean class="app05a.common.DateConverter">
+                    <constructor-arg type="java.lang.String" value="yyyy-MM-dd"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <!--直接注册Formatter-->
+    <bean id="conversionService2" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                <!--自定义的Converter-->
+                <bean class="app05a.common.DateFormatter">
+                    <constructor-arg type="java.lang.String" value="yyyy-MM-dd"/>
+                </bean>
+            </set>
+        </property>
+    </bean>
+
+    <!--使用Registrar注册Formatter-->
+    <bean id="conversionService3" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatterRegistrars">
+            <set>
+                <!--自定义的Converter-->
+                <bean class="app05a.common.DateRegistrar">
+                    <constructor-arg type="java.lang.String" value="yyyy-MM-dd"/>
+                </bean>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+</beans>
