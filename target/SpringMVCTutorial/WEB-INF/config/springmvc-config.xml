@@ -19,7 +19,7 @@
     <!--为Converter或Formatter增加conversion-service="conversionService"-->
     <!--<mvc:annotation-driven conversion-service="conversionService"/>-->
     <!--<mvc:annotation-driven conversion-service="conversionService2"/>-->
-    <mvc:annotation-driven conversion-service="conversionService3"/>
+    <mvc:annotation-driven conversion-service="conversionService3" />
 
     <!--
     http://perfy315.iteye.com/blog/2008763
@@ -27,6 +27,11 @@
     比如我们在 JSP 中引入一个 js 文件：src="${webRoot}/js/jQuery-core/jquery-1.6.1.min.js
     -->
     <mvc:resources mapping="/css/**" location="/WEB-INF/static/css/"/>
+    <!--
+    在页面中引用图片时，会匹配该映射
+    <img width="100" src="http://localhost:8080/images/20160823_123626_000.png"/>
+    -->
+    <mvc:resources mapping="/images/**" location="/WEB-INF/images/"/>
 
     <!--使用更具备一般性的Converter-->
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">

@@ -39,3 +39,12 @@ JavaServer Pages Standard Tag Language，JSTL是标准标签库，通过多个�
 9.8 函数（略）
 
 ##第十章 国际化
+
+##第十一章 上传文件
+文件上传需要依赖commons-fileupload和commons-io组件，在配置文件中配置：
+CommonsMultipartResolver
+MultipartFile接口，两个关键方法：
+String getOriginalFileName();//获取源文件名称
+void transferTo(String destination);//将上传文件保存至指定目录下
+
+todo: 11-9:
