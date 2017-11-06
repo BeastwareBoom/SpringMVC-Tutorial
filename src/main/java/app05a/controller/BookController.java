@@ -1,5 +1,6 @@
 package app05a.controller;
 
+import app05a.common.BookValidator;
 import app05a.domain.Book;
 import app05a.domain.Category;
 import app05a.service.BookService;
@@ -8,6 +9,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,7 +69,8 @@ public class BookController {
      * @return
      */
     @RequestMapping(value = "/book_save")
-    public String saveBook(@ModelAttribute Book book) {
+    public String saveBook(@ModelAttribute Book book, BindingResult bindingResult, Model model) {
+        Category category = bookService.getCategory(book.getCategory().getId());
         /*
          * 这里输出：Category{id=1, name='null'}
          * 在BookAddForm.jsp页面中，<form:select id="category" path="category.id"
@@ -75,7 +79,19 @@ public class BookController {
          * 只提交了category.id，故需执行查询并设置
          */
         logger.info("category = " + book.getCategory());
-        Category category = bookService.getCategory(book.getCategory().getId());
+        //启用输入验证
+        BookValidator bookValidator = new BookValidator();
+        bookValidator.validate(book, bindingResult);
+        if (bindingResult.hasErrors()) {
+            List<Category> categories = bookService.getAllCategories();
+            model.addAttribute("categories", categories);
+            FieldError fieldError = bindingResult.getFieldError();
+            logger.info("Code:" + fieldError.getCode() + ",field:" + fieldError.getRejectedValue());
+//            返回录入界面
+            return "BookAddForm";
+        }
+
+
         book.setCategory(category);
         bookService.save(book);
         return "redirect:/book_list";

@@ -8,23 +8,23 @@
 }
 
 form {
-  font:100% verdana;
-  min-width: 500px;
-  max-width: 600px;
-  width: 560px;
+    font: 100% verdana;
+    min-width: 500px;
+    max-width: 600px;
+    width: 560px;
 }
 
 form fieldset {
-  border-color: #bdbebf;
-  border-width: 3px;
-  margin: 0;
+    border-color: #bdbebf;
+    border-width: 3px;
+    margin: 0;
 }
 
 legend {
     font-size: 1.3em;
 }
 
-form label { 
+form label {
     width: 250px;
     display: block;
     float: left;
@@ -33,18 +33,20 @@ form label {
 }
 
 table td {
-	border: 1px solid #dedede;
-	background: MistyRose;
-	/* for web colors visit http://en.wikipedia.org/wiki/Web_colors */
+    border: 1px solid #dedede;
+    background: MistyRose;
+    /* for web colors visit http://en.wikipedia.org/wiki/Web_colors */
 }
 
 #buttons {
     text-align: right;
 }
+
 #errors, li {
-	color: red;
+    color: red;
 }
+
 .error {
     color: red;
-    font-size: 9pt;	
+    font-size: 9pt;
 }

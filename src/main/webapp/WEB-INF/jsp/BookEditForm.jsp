@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
+<%@include file="/WEB-INF/jsp/common/tagPage.jsp" %>
+
 <!DOCTYPE HTML>
 <html>
 <head>
     <title>Edit Book Form</title>
-    <style type="text/css">@import url("<c:url value="/WEB-INF/static/css/main.css"/>");</style>
+    <link rel="stylesheet" href="${webRoot}/css/main.css" type="text/css"/>
 </head>
 <body>
 
