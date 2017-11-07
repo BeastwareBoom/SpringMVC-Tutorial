@@ -19,7 +19,7 @@
     <!--为Converter或Formatter增加conversion-service="conversionService"-->
     <!--<mvc:annotation-driven conversion-service="conversionService"/>-->
     <!--<mvc:annotation-driven conversion-service="conversionService2"/>-->
-    <mvc:annotation-driven conversion-service="conversionService3" />
+    <mvc:annotation-driven conversion-service="conversionService3"/>
 
     <!--
     http://perfy315.iteye.com/blog/2008763
@@ -27,11 +27,14 @@
     比如我们在 JSP 中引入一个 js 文件：src="${webRoot}/js/jQuery-core/jquery-1.6.1.min.js
     -->
     <mvc:resources mapping="/css/**" location="/WEB-INF/static/css/"/>
+    <mvc:resources mapping="/js/**" location="/WEB-INF/static/js/"/>
     <!--
     在页面中引用图片时，会匹配该映射
     <img width="100" src="http://localhost:8080/images/20160823_123626_000.png"/>
     -->
     <mvc:resources mapping="/images/**" location="/WEB-INF/images/"/>
+    <!--No mapping found for HTTP request with URI [/images.html] in DispatcherServlet with name 'springmvc'-->
+    <mvc:resources mapping="/*.html" location="/"/>
 
     <!--使用更具备一般性的Converter-->
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
@@ -91,4 +94,8 @@
         <property name="maxInMemorySize" value="4096"/>
     </bean>
     <!--文件上传 end-->
+
+    <!--Servlet3文件上传 ，不再围绕commons-fileupload和commons-io，需要web.xml配置
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+    -->
 </beans>

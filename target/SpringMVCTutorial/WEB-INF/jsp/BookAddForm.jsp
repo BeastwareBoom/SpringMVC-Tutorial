@@ -5,6 +5,9 @@
 <head>
     <title>Add Book Form</title>
     <link rel="stylesheet" href="${webRoot}/css/main.css" type="text/css"/>
+    <script src="${webRoot}/js/jquery-1.8.2.js" type="text/javascript"></script>
+
+
 </head>
 <body>
 
@@ -52,6 +55,7 @@
             </p>
 
             <p id="buttons">
+                <input type="button" id="getBook" value="获取" style="float: left">
                 <input id="reset" type="reset" tabindex="4">
                 <input id="submit" type="submit" tabindex="5"
                        value="Add Book">
@@ -59,5 +63,27 @@
         </fieldset>
     </form:form>
 </div>
+<script type="text/javascript">
+    $("#getBook").click(function () {
+        $.ajax({
+            type: "post",
+            url: "${webRoot}/book_get",
+            data: {isbn: "10010"},
+            dataType: "json",
+            success: function (data, status, xhr) {
+                console.log(status)
+                console.log(xhr)
+                console.log(data)
+                if (status === "success") {
+                    $("#title").val(data.title)
+                    $("#isbn").val(data.isbn)
+                    $("#author").val(data.author)
+                    var date = data.addDate;
+                    $("#addDate").val(date)
+                }
+            }
+        })
+    });
+</script>
 </body>
 </html>

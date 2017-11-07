@@ -1,6 +1,6 @@
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://java.sun.com/xml/ns/javaee"
-         id="WebApp_ID" version="3.0">
+<web-app
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        id="WebApp_ID" version="3.0">
 
     <!--显示名称-->
     <display-name>Archetype Created Web Application</display-name>
@@ -15,9 +15,22 @@
             <param-value>/WEB-INF/config/springmvc-config.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
+        <!--配置Servlet3文件上传使用@MultipartConfig对Servlet进行标注，或在web.xml中进行配置
+        <multipart-config>
+            <max-file-size>20848820</max-file-size>
+            <max-request-size>418018841</max-request-size>
+            <file-size-threshold>1048576</file-size-threshold>
+        </multipart-config>
+        -->
     </servlet>
 
     <servlet-mapping>
+        <!--
+        <url-pattern>/</url-pattern>把所有的请求都交给spring去处理了，而所有available的请求url都是在Constroller
+        里使用类似@RequestMapping(value = "/login/{user}", method = RequestMethod.GET)这样的注解配置的，这样的话
+        对js/css/jpg/gif等静态资源的访问就会得不到，需要在SpringMVC配置静态资源的映射，或
+        http://blog.csdn.net/y_index/article/details/51773341
+        -->
         <servlet-name>springmvc</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>

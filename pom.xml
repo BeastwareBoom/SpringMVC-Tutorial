@@ -14,7 +14,10 @@
         <commons-fileupload.version>1.3.1</commons-fileupload.version>
         <commons-io.version>2.4</commons-io.version>
         <jstl.version>1.2</jstl.version>
+        <jackson-databind.version>2.4.2</jackson-databind.version>
     </properties>
+
+    <!--依赖资源-->
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -22,6 +25,15 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+
+        <!--JSON处理-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
+        </dependency>
+
+
 
         <!--JSP api-->
         <dependency>
@@ -63,7 +75,7 @@
         </dependency>
         <!--Spring结束-->
 
-        <!-- JSTL标签类 -->
+        <!-- JSTL标签类-->
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
@@ -77,11 +89,6 @@
             <version>${commons-fileupload.version}</version>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>commons-io</groupId>-->
-            <!--<artifactId>commons-io</artifactId>-->
-            <!--<version>${commons-io.version}</version>-->
-        <!--</dependency>-->
 
     </dependencies>
     <build>

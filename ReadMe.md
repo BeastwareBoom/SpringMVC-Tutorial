@@ -47,4 +47,13 @@ MultipartFile接口，两个关键方法：
 String getOriginalFileName();//获取源文件名称
 void transferTo(String destination);//将上传文件保存至指定目录下
 
-todo: 11-9:
+##第十二章 下载文件
+图片或者HTML这些静态资源，在浏览器中输入正确的URL地址即可下载。只要该资源放在
+应用程序的目录下，或子目录下，而不是放在WEB-INF下，Servlet/Jsp容器就会将其发送
+到浏览器。然而优势静态资源放在应用路径之外则需要控制其访问权限，防止其他网站交叉引用，
+这时就用到了下载。
+
+setContentType("application/octet-stream");
+setHeader("Content-Disposition", "attachment; filename=10.jpg")
+
+##其他 响应JSON数据

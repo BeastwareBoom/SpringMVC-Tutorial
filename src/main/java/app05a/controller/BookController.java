@@ -11,10 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -47,6 +46,14 @@ public class BookController {
         List<Category> categories = bookService.getAllCategories();
         model.addAttribute("categories", categories);
         return "BookAddForm";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/book_get")
+    public Book getBook(@RequestParam String isbn) {
+        logger.info("请求参数isbn：" + isbn);
+        Category category = new Category(1, "Computing");
+        return new Book(100010, isbn, "Java8实战", category, "vintage", new Date());
     }
 
     @RequestMapping(value = "/book_edit/{id}")

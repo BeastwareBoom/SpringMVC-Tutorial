@@ -34,6 +34,7 @@ public class ProductController {
     @RequestMapping("/product_save")
     public String saveProduct(HttpServletRequest request, @ModelAttribute Product product) {
         List<MultipartFile> images = product.getImages();
+        logger.info("images:"+(images==null));
         if (null != images && images.size() > 0) {
             List<String> fileNames = new ArrayList<String>();
             for (MultipartFile image : images) {

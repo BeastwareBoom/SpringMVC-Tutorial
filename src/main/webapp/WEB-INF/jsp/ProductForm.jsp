@@ -12,7 +12,7 @@
 <div id="global">
     <%--保存测试重定向Flash属性--%>
     <%--<form:form commandName="product" action="product_save_and_view" method="post" enctype="multipart/form-data">--%>
-    <%--保存测试图片上传--%>
+    <%--保存测试图片上传，设置enctype="multipart/form-data"--%>
     <form:form commandName="product" action="product_save" method="post" enctype="multipart/form-data">
         <fieldset>
             <legend>Add a product</legend>
@@ -29,9 +29,15 @@
                 <label for="price">Price: </label>
                 <form:input id="price" path="price" cssErrorClass="error"/>
             </p>
+
+            <%--多张图片上传，List<MultipartFile> images->images[i]--%>
             <p>
                 <label for="image">Product Image: </label>
                 <input type="file" name="images[0]"/>
+            </p>
+            <p>
+                <label for="image">Product Image: </label>
+                <input type="file" name="images[1]"/>
             </p>
             <p id="buttons">
                 <input id="reset" type="reset" tabindex="4">
