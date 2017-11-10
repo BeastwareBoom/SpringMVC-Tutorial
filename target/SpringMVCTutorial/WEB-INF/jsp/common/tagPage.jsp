@@ -2,7 +2,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page trimDirectiveWhitespaces="true" %>
+<%@page trimDirectiveWhitespaces="true" %>
 <%
     response.setHeader("cache-control", "max-age=5,public,must-revalidate"); //one day
     response.setDateHeader("expires", -1);
@@ -11,6 +11,6 @@
 %>
 <%--<c:set value="${pageContext.request.contextPath}" var="webRoot" />--%>
 <%
-    String webRoot = "http://" + request.getServerName() + ":" + request.getServerPort()+request.getContextPath();
+    String webRoot = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
     request.setAttribute("webRoot", webRoot);
 %>
