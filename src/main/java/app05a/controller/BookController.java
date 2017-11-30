@@ -98,7 +98,6 @@ public class BookController {
             return "BookAddForm";
         }
 
-
         book.setCategory(category);
         bookService.save(book);
         return "redirect:/book_list";
